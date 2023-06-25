@@ -1,3 +1,19 @@
+#binary tree example:
+#               g
+#              / \
+#             /   \
+#            /     \
+#           /       \
+#          c         i
+#         / \       / \
+#        /   \     /   \
+#       /     \   h     j
+#      b       e         \
+#     /       / \         \
+#    /       d   f         k
+#   a    
+
+
 class Node: #binary tree node implemanatation
     def __init__(self, data):
         self.data = data
@@ -51,9 +67,49 @@ def PostOrder(r): #PostOder Traversal of Binary Tree - same as the others just c
         print(r.data)
         PostOrder(r.right)
         PostOrder(r.left)
-  
+        
+#AdjacencyList Examples:
+# g: [c, i]
+# c: [b, e]
+# b: [a]
+# a: []
+# etc...
+
+d = {} #dic that we will use to store the lists
+
+def AdjacencyListMaker(r): #use the inorder traversal 
+    if r is None: 
+        return 
+    else:
+        d[r.data] = []
+        AdjacencyListMaker(r.left)
+        
+        
+        if(r.left):
+            d[r.data].append(r.left.data)
+            
+        if(r.right):
+            d[r.data].append(r.right.data)
+            
+        AdjacencyListMaker(r.right)
+        
+    return d
+    
                     
 if __name__ == '__main__':
+    root = Node('g')
+    root.insert('c')
+    root.insert('b')
+    root.insert('a')
+    root.insert('e')
+    root.insert('d')
+    root.insert('f')
+    root.insert('i')
+    root.insert('h')
+    root.insert('j')
+    root.insert('k')
     
-
-    
+    print('Adjacency Lists:')
+    Adjacency = AdjacencyListMaker(root)
+    for ele in Adjacency:
+        print(f'{ele} : {d[ele]}')
