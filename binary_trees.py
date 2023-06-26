@@ -42,7 +42,7 @@ class Node: #binary tree node implemanatation
 
 #InOrder: left, root, right
 #PreOrder: root, left, right
-#PostOrder: root, right, left
+#PostOrder: left, right, root
 
 def inOrder(r): #inOrder Traversal of Binary tree
     if r is None: #make the recursive function stop when we reach the end
